@@ -35,8 +35,10 @@ export default function UpdatePost() {
           setPublishError(data.message);
           return;
         }
+        
         if (res.ok) {
           setPublishError(null);
+          console.log(data.posts[0]);
           setFormData(data.posts[0]);
         }
       };
@@ -85,8 +87,9 @@ export default function UpdatePost() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     try {
-      const res = await fetch(`/api/post/updatepost/${formData._id}/${currentUser._id}`, {
+      const res = await fetch(`/api/post/updatepost/${formData.id}/${currentUser._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
